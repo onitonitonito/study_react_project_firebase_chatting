@@ -1,0 +1,20 @@
+#ChatList {
+    box-sizing: border-box;
+    background-color: white;
+}
+
+#ChatList .title {
+    padding: 4px 8px;
+    background-color: #ddd;
+    color: black;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+#ChatList .right {
+    float: right;
+}
+
+#ChatList .message {
+    padding: 4px;
+}

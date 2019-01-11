@@ -1,0 +1,15 @@
+#ChattingBox {
+    position: fixed;
+    width: 480px;
+    height: 100%;
+    background: rgba(255, 255, 255, .9);
+    right: 0;
+    top: 0;
+    box-sizing: border-box;
+    transition: .3s;
+
+    color: black;
+}
+#ChattingBox.hide {
+    right: -480px;
+}
