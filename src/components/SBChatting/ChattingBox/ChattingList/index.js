@@ -1,9 +1,9 @@
 import React from 'react';
-import './index.css';
 // Compos
 import ChatMessage from './ChatMessage'; // 채팅 메세지
 
 const defaultProps = {
+    isPopupStyle: false,
     fireDB: null,
     myInfo: null
 };
@@ -31,6 +31,9 @@ class ChattingList extends React.Component {
 
     // @Override Lifecycle
     componentDidMount() {
+        // 스타일 시트 로딩
+        if(this.props.isPopupStyle) require('./popup.css');
+        else require('./index.css');
         //채팅 메세지 감지
         this.props.fireDB.ref('FireChat/messages').on('value', async ds => { // console.log(ds.val());
             // 데이터 수정 (key값 병합)
@@ -42,11 +45,13 @@ class ChattingList extends React.Component {
             obj = null;
             this.setState({ chatData: newData });
         });
+        // 메세지 창에 키보드 포커스
+        this.ref2inputMessage.current.focus();
     }
     /* 이벤트 바인딩 */
     handleChange(e){        
         this.setState({ inputMessage: e.target.value });
-        this.ref2btnSend.disabled = e.target.value.length < 1 ;
+        this.ref2btnSend.current.disabled = e.target.value.length < 1 ;
     }
     /* 엔터 감지 */
     handleKeyDown(e){        
@@ -64,11 +69,11 @@ class ChattingList extends React.Component {
             name: this.props.myInfo.displayName,
             message: this.state.inputMessage
         }
-        this.ref2btnSend.disabled = true;
+        this.ref2btnSend.current.disabled = true;
         this.props.fireDB.ref('FireChat/messages').push(msgObj).then(()=>{
-            this.ref2btnSend.disabled = false;
+            this.ref2btnSend.current.disabled = false;
             this.setState({inputMessage: '' });
-            this.ref2inputMessage.focus();
+            this.ref2inputMessage.current.focus();
         });
     }
 
@@ -89,22 +94,26 @@ class ChattingList extends React.Component {
         return (
             <div id="ChatList">
                 <div className="title">
-                    채팅 리스트
+                    대화 목록
                 </div>
-                <div>{ listRender2ChatMessage(this.state.chatData) /* 채팅 목록 랜더링 */ }</div>
-                <input type="text" placeholder="(메세지 입력)"
-                    ref={ ref=>{this.ref2inputMessage=ref} }
-                    onChange={this.handleChange}
-                    onKeyDown={this.handleKeyDown}
-                    value={this.state.inputMessage}
-                />
-                <button
-                    ref={ ref=>{this.ref2btnSend=ref} }
-                    onClick={this.handleSendMessage}
-                    disabled
-                >
-                    전송
-                </button>
+                <div className="message">
+                    { listRender2ChatMessage(this.state.chatData) /* 채팅 목록 랜더링 */ }
+                </div>
+                <div className="form">
+                    <input type="text" placeholder="(메세지 입력)"
+                        ref={ this.ref2inputMessage }
+                        onChange={this.handleChange}
+                        onKeyDown={this.handleKeyDown}
+                        value={this.state.inputMessage}
+                    />
+                    <button
+                        ref={ this.ref2btnSend }
+                        onClick={this.handleSendMessage}
+                        disabled
+                    >
+                        전송
+                    </button>
+                </div>
             </div> 
         );
     } // END render();

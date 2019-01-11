@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
       
-        <SBChatting /> {/* 채팅 컴포넌트 호출 */}
+        <SBChatting isPopupStyle="true"/> {/* 채팅 컴포넌트 호출 */}
 
         <h1>React.js - Firebase Chatting Component Project</h1>
         <h2>요구사항</h2>

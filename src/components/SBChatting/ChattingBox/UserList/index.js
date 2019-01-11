@@ -1,8 +1,12 @@
 import React from 'react';
-import './index.css';
 // Compos
 import OnlineUser from './OnlineUser'; // 온라인 유저
 
+const defaultProps = {
+    isPopupStyle: false,
+    fireDB: null,
+    myInfo: null
+};
 /* 실시간 로그인 유저 */
 class UserList extends React.Component {
     constructor(props){
@@ -15,6 +19,9 @@ class UserList extends React.Component {
 
     // @Override Lifecycle
     componentDidMount() {
+        // 스타일 시트 로딩
+        if(this.props.isPopupStyle) require('./popup.css');
+        else require('./index.css');
         // 실시간 접속자 감지 
         this.props.fireDB.ref('FireChat/users').on('value', async ds => { // console.log(ds.val());
             // 데이터 key값 병합 작업
@@ -34,6 +41,7 @@ class UserList extends React.Component {
             return data.map( (userinfo, i) => {
                 return (
                     <OnlineUser
+                        isPopupStyle={ this.props.isPopupStyle /* 팝업 스타일 설정 여부 */ } 
                         key={userinfo.key /* 사용자 key = uid */ }
                         name={userinfo.name /* 사용자 displayName */ }
                         isMe={userinfo.key===this.props.myInfo.uid /* 나 여부 */}
@@ -52,7 +60,7 @@ class UserList extends React.Component {
                             로그아웃
                         </button>
                     </span>
-                    유저 리스트
+                    실시간 접속 목록 ({ this.state.onlineUsers.length })
                 </div>
 
                 <div className="users">
@@ -62,10 +70,5 @@ class UserList extends React.Component {
         );
     } // END render();
 }
-
-UserList.defaultProps = {
-    fireDB: null,
-    myInfo: null
-}
-
+UserList.defaultProps = defaultProps;
 export default UserList;

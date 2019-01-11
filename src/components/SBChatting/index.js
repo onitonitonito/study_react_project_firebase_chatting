@@ -9,6 +9,10 @@ import './index.css';
 import FloatingButton from './FloatingButton'; // 떠있는 버튼
 import ChattingBox from './ChattingBox'; // 채팅 메세지 박스
 
+const defaultProps = {
+    isPopupStyle: false
+}
+
 /* Container Component */
 class ChattingCompo extends React.Component {
     constructor(props){
@@ -97,12 +101,14 @@ class ChattingCompo extends React.Component {
                     onToggleChattingBox={ this.toggleChattingBox /* 채팅방 보이기 여부 토글 이벤트 */ }
                 />
                 <ChattingBox
+                    isPopupStyle={ this.props.isPopupStyle /* 팝업 스타일 설정 여부? */ } 
                     isOpen={ this.state.isOpenChattingBox /* 열림 상태 */ } 
                     isFirebaseInit={ this.state.isFirebaseInit /* Firebase의 초기화 상태 */ }
                     isLogin={ this.state.isLogin /* 로그인 상태 */ }
                     myInfo={ this.state.myInfo /* 내 정보 */ }
                     fireDB={ this.state.fireDB /* Firebase RealtimeDB 전달 */ }
-
+                    /* event binding */
+                    onToggleChattingBox={ this.toggleChattingBox /* 채팅방 보이기 여부 토글 이벤트 */ }
                     onGoogleSignin={this.openGoogleSignin /* 구글 로그인 이벤트 */ }
                     onSignout={this.onSignout /* 로그아웃 이벤트 */ }
                 />
@@ -110,5 +116,5 @@ class ChattingCompo extends React.Component {
         );
     } // END render();
 }
-
+ChattingCompo.defaultProps = defaultProps;
 export default ChattingCompo;

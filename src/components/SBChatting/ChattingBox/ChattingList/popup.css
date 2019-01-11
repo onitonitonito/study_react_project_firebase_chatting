@@ -1,38 +1,43 @@
 #ChatList {
+    float: left;
     position: relative;
     box-sizing: border-box;
     background-color: white;
-    height: 80vh;
+    width: calc( 100% - 256px );
+    height: 90vh;
 }
 
 #ChatList .title {
     box-sizing: border-box;
     padding: 0 8px;
-    background-color: #ddd;
     color: black;
     font-weight: bold;
     font-size: 10pt;
     height: 36px;
     line-height: 36px;
+    border-bottom: 1px solid #ccc;
 }
 
 #ChatList .message {
     box-sizing: border-box;
     padding: 4px;
-    height: calc( 80vh - 72px );
+    height: calc( 90vh - 72px );
 }
 
 #ChatList .form {
     box-sizing: border-box;
-    padding: 0 8px;
-    height: 36px;
-    line-height: 36px;
-    background: #eee;
+    margin: 4px;
+    padding: 2px 4px 0 4px;
+    height: 28px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
 }
 
 #ChatList .form input{
-    width: 390px;
+    border: none;
+    padding: none;
     margin-right: 4px;
+    width: calc(100% - 72px);
 }
 #ChatList .form button{
     width: 64px;

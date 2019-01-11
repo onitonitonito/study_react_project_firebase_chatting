@@ -1,17 +1,17 @@
 #UserList {
+    float: left;
     position: relative;
     box-sizing: border-box;
-    background-color: white;
-    height: 20vh;
+    background-color: #4d394b;
+    width: 240px;
+    height: 90vh;
+    color: #ccc;
 }
 
 #UserList .title {
     box-sizing: border-box;
-    padding: 0 8px;
-    background-color: #ddd;
-    color: black;
+    padding: 0 4px;
     font-weight: bold;
-    font-size: 10pt;
     height: 36px;
     line-height: 36px;
 }
@@ -21,13 +21,14 @@
 }
 
 #UserList .users {
+    font-size: 11pt;
     box-sizing: border-box;
-    padding: 4px;
+    padding: 8px;
     width: 100%;
-    height: calc( 20vh - 36px );
+    height: calc( 90vh - 36px );
     overflow-x: hidden;
 }
 
 #UserList .me {
-    color: blue;
+    color: white;
 }
