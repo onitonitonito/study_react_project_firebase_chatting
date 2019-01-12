@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+import './popup.css';
 // Compos
 import RequireSignin from './RequireSignin'; // 로그인 요청 화면
 import UserList from './UserList'; // 실시간 접속자 화면
@@ -19,17 +20,25 @@ class ChattingBox extends React.Component {
         if ( this.props.isFirebaseInit ) { // Firebase 초기화 성공하고
             if ( this.props.isLogin ) { // 로그인 되었을 경우
                 contents = (
-                    <div>
+                    <>
                         <UserList
+                            isPopupStyle={ this.props.isPopupStyle /* 팝업 스타일 설정 여부 */ } 
                             myInfo={ this.props.myInfo /* 내 정보 */ }
                             fireDB={ this.props.fireDB /* Firebase RealtimeDB 전달 */}
                             onSignout={this.props.onSignout}
                         />
                         <ChattingList
+                            isPopupStyle={ this.props.isPopupStyle /* 팝업 스타일 설정 여부 */ } 
                             myInfo={ this.props.myInfo /* 내 정보 */ }
                             fireDB={ this.props.fireDB /* Firebase RealtimeDB 전달 */}
                         />
-                    </div>
+                        <div
+                            className="close"
+                            onClick={ this.props.onToggleChattingBox /* 채팅방 보이기 여부 */ }
+                        >
+                            닫기
+                        </div>
+                    </>
                 );
             } else { // 로그인 되지 않은 경우
                 contents = (
@@ -45,13 +54,15 @@ class ChattingBox extends React.Component {
         }
         
         return (
-            <div id="ChattingBox" className={ this.props.isOpen ? "" : "hide" }>
+            <div
+                id="ChattingBox"
+                className={ (this.props.isPopupStyle ? "popup":"default")
+                    +" "+(this.props.isOpen ? "" : "hide")}
+            >
                 { contents }
             </div> 
         );
     } // END render();
 }
-
 ChattingBox.defaultProps = defaultProps;
-
 export default ChattingBox;

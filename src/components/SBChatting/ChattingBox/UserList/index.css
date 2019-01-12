@@ -1,24 +1,33 @@
-#UserList {
+#UserList.default {
+    position: relative;
     box-sizing: border-box;
     background-color: white;
+    height: 20vh;
 }
 
-#UserList .title {
-    padding: 4px 8px;
+#UserList.default .title {
+    box-sizing: border-box;
+    padding: 0 8px;
     background-color: #ddd;
     color: black;
     font-weight: bold;
-    font-size: 11pt;
+    font-size: 10pt;
+    height: 36px;
+    line-height: 36px;
 }
 
-#UserList .right {
+#UserList.default .right {
     float: right;
 }
 
-#UserList .users {
+#UserList.default .users {
+    box-sizing: border-box;
     padding: 4px;
+    width: 100%;
+    height: calc( 20vh - 36px );
+    overflow-x: hidden;
 }
 
-.me {
+#UserList.default .me {
     color: blue;
 }
