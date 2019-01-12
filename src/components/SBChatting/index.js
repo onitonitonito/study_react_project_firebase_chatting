@@ -19,7 +19,7 @@ class ChattingCompo extends React.Component {
         super(props);
         this.state = {
             isFirebaseInit: false, fireDB: null, fireAuth: null, fireAuthProviders: null, // 파이어베이스꺼
-            isOpenChattingBox: true, // 채팅 박스가 열려있는가?
+            isOpenChattingBox: false, // 채팅 박스가 열려있는가?
             isLogin: false, // 로그인 여부
             myInfo: {} // 내 firebase 로그인 정보
         }
