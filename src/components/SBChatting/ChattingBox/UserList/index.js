@@ -19,7 +19,7 @@ class UserList extends React.Component {
         }
     }
 
-    // @Override Lifecycle
+    // @Lifecycle
     componentDidMount() {
         // 실시간 접속자 감지 
         this.props.fireDB.ref('FireChat/users').on('value', async ds => { // console.log(ds.val());

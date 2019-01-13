@@ -32,12 +32,6 @@ class ChattingBox extends React.Component {
                             myInfo={ this.props.myInfo /* 내 정보 */ }
                             fireDB={ this.props.fireDB /* Firebase RealtimeDB 전달 */}
                         />
-                        <div
-                            className="close"
-                            onClick={ this.props.onToggleChattingBox /* 채팅방 보이기 여부 */ }
-                        >
-                            닫기
-                        </div>
                     </>
                 );
             } else { // 로그인 되지 않은 경우
@@ -60,6 +54,12 @@ class ChattingBox extends React.Component {
                     +" "+(this.props.isOpen ? "" : "hide")}
             >
                 { contents }
+                <div
+                    className="close"
+                    onClick={ this.props.onToggleChattingBox /* 채팅방 보이기 여부 */ }
+                >
+                    닫기
+                </div>
             </div> 
         );
     } // END render();

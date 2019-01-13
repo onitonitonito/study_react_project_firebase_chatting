@@ -31,7 +31,7 @@ class ChattingList extends React.Component {
 
     }
 
-    // @Override Lifecycle
+    // @Lifecycle
     componentDidMount() {
         //채팅 메세지 감지
         this.props.fireDB.ref('FireChat/messages').on('value', async ds => { // console.log(ds.val());
@@ -120,7 +120,5 @@ class ChattingList extends React.Component {
         );
     } // END render();
 }
-
 ChattingList.defaultProps = defaultProps;
-
 export default ChattingList;

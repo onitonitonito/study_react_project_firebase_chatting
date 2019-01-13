@@ -6,12 +6,14 @@ import SBChatting from './components/SBChatting'; // 채팅 컴포넌트
 class App extends Component {
   constructor(props){
     super(props);
+
     this.state = {
-      isPopupStyle: false
+      isPopupStyle: false // 팝업 스타일 여부
     }
+    // 이벤트 바인딩
     this.handleChange = this.handleChange.bind(this);
   }
-  /* 이벤트 바인딩 */
+  /* 옵션 체크 이벤트 바인딩 */
   handleChange(e){
     console.log(e.target.checked);
     this.setState({ isPopupStyle: e.target.checked });
@@ -19,8 +21,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      
-        <SBChatting isPopupStyle={this.state.isPopupStyle}/> {/* 채팅 컴포넌트 호출 */}
+        {/* 채팅 컴포넌트 호출 */}
+        <SBChatting isPopupStyle={this.state.isPopupStyle}/>
 
         <h1>React.js - Firebase Chatting Component Project</h1>
         <p>

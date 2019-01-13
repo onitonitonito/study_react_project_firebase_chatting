@@ -29,7 +29,7 @@ class ChattingCompo extends React.Component {
         this.onSignout = this.onSignout.bind(this); // 로그아웃
     }
 
-    // @Override Lifecycle
+    // @Lifecycle
     async componentDidMount() { // this.setState() 때문에...
         try { // Firebase setting 
             firebase.initializeApp( require("./firebaseConfig.js").default );
@@ -41,9 +41,9 @@ class ChattingCompo extends React.Component {
                     google: new firebase.auth.GoogleAuthProvider()
                 }
             });
-            // firebase DB 미리 접속
+            // firebase DB 미리 접속 (커넥션 딜레이)
             firebase.database().ref('FireChat/version').once('value', function(ds) {
-                console.log('ChattingVersion:', ds.val() );
+                // console.log('ChattingVersion:', ds.val() );
             });
             // 인증 상태 감지 (Listening)
             if( this.state.isFirebaseInit ) {
